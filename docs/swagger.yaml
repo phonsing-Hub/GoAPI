@@ -1,0 +1,17 @@
+info:
+  contact:
+    email: rahmat.putra@spesolution.com
+    name: API Support
+  description: This is a sample swagger for Go Skeleton
+  license:
+    name: Apache 2.0
+  termsOfService: http://swagger.io/terms/
+  title: Go Skeleton!
+  version: "1.0"
+paths: {}
+securityDefinitions:
+  Bearer:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

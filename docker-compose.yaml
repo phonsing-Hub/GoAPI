@@ -1,0 +1,66 @@
+version: "3.7"
+services:
+  # skeleton-api-dev:
+  #   container_name: go-skeleton
+  #   image: go-skeleton-api:1.0.1
+  #   ports:
+  #     - 8760:7011
+  #   env_file:
+  #     - ./.env
+  #   network_mode: bridge
+
+  # skeleton-worker-log:
+  #   container_name: go-skeleton-worker-log
+  #   image: go-skeleton-worker:1.0.1
+  #   env_file:
+  #     - ./.env
+  #   command: [ "log.insert" ]
+  #   network_mode: bridge
+
+  # skeleton-worker-example:
+  #   container_name: go-skeleton-worker-example
+  #   image: go-skeleton-worker:1.0.1
+  #   env_file:
+  #     - ./.env
+  #   command: [ "example.consumer" ]
+  #   network_mode: bridge
+
+  # db:
+  #   image: mysql
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: 992132
+  #     MYSQL_DATABASE: go_skeleton
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - db_data:/var/lib/mysql
+
+  db:
+    image: postgres:16.6 
+    container_name: go-db-pgsql
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root1234
+      POSTGRES_DB: mydb
+      TZ: Asia/Bangkok 
+
+    volumes:
+      - postgres_go_data:/var/lib/postgresql/data
+    # networks:
+    #   - app-network
+    ports:
+      - "15432:5432"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taisolution -d AccessMeeting"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+
+volumes:
+  postgres_go_data:
