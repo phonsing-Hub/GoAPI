@@ -17,26 +17,6 @@ Includes clean architecture layout, database migration, Swagger docs, and more.
 
 ---
 
-## 📁 Project Structure
-
-go-fiber-app/
-├── cmd/api/                # Entrypoint (main.go)
-├── internal/
-│   ├── handler/            # HTTP handlers (controllers)
-│   ├── model/              # GORM models
-│   ├── repository/         # DB logic
-│   ├── service/            # Business logic
-│   └── http/               # Routing, middleware
-├── database/migration/     # SQL migration files
-├── proto/                  # gRPC proto files (optional)
-├── configs/                # .env, config loader
-├── docs/                   # Swagger docs (auto-generated)
-├── tests/                  # Unit + integration tests
-├── Makefile                # Task runner
-└── .env                    # Environment variables
-
----
-
 ## ⚙️ Setup
 
 ### 1. Clone project
@@ -44,6 +24,8 @@ go-fiber-app/
 ```bash
 git clone https://github.com/yourname/go-fiber-skeleton.git
 cd go-fiber-skeleton
+```
+
 
 2. Setup .env
 
@@ -65,18 +47,19 @@ go mod tidy
 🚀 Usage
 
 Run dev with live reload
-
+```bash
 make dev
+```
 
 Run manually
-
+```bash
 make run
+```
 
 Build binary
-
+```bash
 make build
-
-
+```
 
 ⸻
 
@@ -86,8 +69,6 @@ make migrate create=create_users_table      # Create new migration
 make migrate_up                             # Apply all migrations
 make migrate_down                           # Rollback latest migration
 make auto_migrate                           # Use GORM to auto-migrate all models
-
-
 
 ⸻
 
@@ -107,8 +88,6 @@ http://localhost:<PORT>/swagger/index.html
 make test          # Run unit tests
 make coverage      # Show coverage report
 make mock d=UserService  # Generate mock for interface
-
-
 
 ⸻
 
